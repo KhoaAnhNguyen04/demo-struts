@@ -1,0 +1,25 @@
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+ "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true"/>
+
+    <package name="default" namespace="/" extends="struts-default">
+        <action name="index">
+            <result type="redirect">player-management</result>
+        </action>
+        <action name="player-management" class="com.example.action.PlayerAction" method="list">
+            <result name="success">/WEB-INF/pages/player-management/player-management.jsp</result>
+        </action>
+        <action name="player-detail" class="com.example.action.PlayerAction" method="detail">
+            <result name="success">/WEB-INF/pages/player-detail/player-detail.jsp</result>
+        </action>
+        <action name="player-update" class="com.example.action.PlayerAction" method="update">
+            <result name="success" type="redirect">player-management</result>
+        </action>
+        <action name="player-create" class="com.example.action.PlayerAction" method="create">
+            <result name="success" type="redirect">player-management</result>
+        </action>
+    </package>
+</struts>

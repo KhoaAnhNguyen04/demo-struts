@@ -1,0 +1,36 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: demo-struts-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: demo_struts
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: app123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  adminer:
+    image: adminer
+    container_name: drink-mixer-adminer
+    restart: unless-stopped
+    ports:
+      - "8000:8080"
+    depends_on:
+      - mysql
+  
+  struts-app:
+    image: tomcat:9
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./target/struts-demo.war:/usr/local/tomcat/webapps/ROOT.war
+    depends_on:
+      - mysql
+
+volumes:
+  mysql_data:
