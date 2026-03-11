@@ -4,52 +4,52 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.example.mapper.PlayerMapper;
-import com.example.model.Player;
+import com.example.mapper.ClubMapper;
+import com.example.model.Club;
 import com.example.utils.MyBatisUtil;
 
-public class PlayerService {
+public class ClubService {
 
-    public List<Player> findAll() {
+    public List<Club> findAll() {
         try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
-            PlayerMapper mapper = session.getMapper(PlayerMapper.class);
+            ClubMapper mapper = session.getMapper(ClubMapper.class);
             return mapper.findAll();
         }
     }
 
-    public Player findById(Long id) {
+    public Club findById(Long id) {
         try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
-            PlayerMapper mapper = session.getMapper(PlayerMapper.class);
+            ClubMapper mapper = session.getMapper(ClubMapper.class);
             return mapper.findById(id);
         }
     }
 
-    public Player getPlayerWithClubs(Long id) {
+    public Club getClubWithPlayers(Long id) {
         try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
-            PlayerMapper mapper = session.getMapper(PlayerMapper.class);
-            return mapper.getPlayerWithClubs(id);
+            ClubMapper mapper = session.getMapper(ClubMapper.class);
+            return mapper.getClubWithPlayers(id);
         }
     }
 
-    public void insert(Player player) {
+    public void insert(Club club) {
         try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
-            PlayerMapper mapper = session.getMapper(PlayerMapper.class);
-            mapper.insert(player);
+            ClubMapper mapper = session.getMapper(ClubMapper.class);
+            mapper.insert(club);
             session.commit();
         }
     }
 
-    public void update(Player player) {
+    public void update(Club club) {
         try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
-            PlayerMapper mapper = session.getMapper(PlayerMapper.class);
-            mapper.update(player);
+            ClubMapper mapper = session.getMapper(ClubMapper.class);
+            mapper.update(club);
             session.commit();
         }
     }
 
     public void delete(Long id) {
         try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
-            PlayerMapper mapper = session.getMapper(PlayerMapper.class);
+            ClubMapper mapper = session.getMapper(ClubMapper.class);
             mapper.delete(id);
             session.commit();
         }

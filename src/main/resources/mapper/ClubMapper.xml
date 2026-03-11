@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.ClubMapper">
+
+    <!-- ========================= -->
+    <!-- RESULT MAP -->
+    <!-- ========================= -->
+
+    <resultMap id="ClubResultMap" type="Club">
+        <id property="id" column="id"/>
+        <result property="clubName" column="club_name"/>
+    </resultMap>
+
+
+    <!-- Club with players -->
+    <resultMap id="ClubWithPlayersResultMap" type="Club">
+        <id property="id" column="club_id"/>
+        <result property="clubName" column="club_name"/>
+        <result property="startYear" column="year_joined"/>
+        <result property="endYear" column="year_left"/>
+
+        <collection property="players" ofType="Player">
+            <id property="id" column="player_id"/>
+            <result property="fullName" column="full_name"/>
+            <result property="position" column="position"/>
+            <result property="birthYear" column="birth_year"/>
+        </collection>
+    </resultMap>
+
+
+    <!-- ========================= -->
+    <!-- SELECT -->
+    <!-- ========================= -->
+
+    <select id="findAll" resultType="Club">
+        SELECT *
+        FROM clubs
+        ORDER BY id
+    </select>
+
+
+    <select id="findById" resultType="Club">
+        SELECT *
+        FROM clubs
+        WHERE id = #{id}
+    </select>
+
+
+    <!-- Get club with players -->
+    <select id="getClubWithPlayers" resultMap="ClubWithPlayersResultMap">
+        SELECT
+            c.id as club_id,
+            c.club_name,
+
+            p.id as player_id,
+            p.full_name,
+            p.position,
+            p.birth_year
+
+        FROM clubs c
+
+        LEFT JOIN player_clubs pc
+            ON c.id = pc.club_id
+
+        LEFT JOIN players p
+            ON pc.player_id = p.id
+
+        WHERE c.id = #{id}
+    </select>
+
+
+    <!-- ========================= -->
+    <!-- INSERT -->
+    <!-- ========================= -->
+
+    <insert id="insert" parameterType="Club" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO clubs (club_name)
+        VALUES (#{clubName})
+    </insert>
+
+
+    <!-- ========================= -->
+    <!-- UPDATE -->
+    <!-- ========================= -->
+
+    <update id="update" parameterType="Club">
+        UPDATE clubs
+        SET club_name = #{clubName}
+        WHERE id = #{id}
+    </update>
+
+
+    <!-- ========================= -->
+    <!-- DELETE -->
+    <!-- ========================= -->
+
+    <delete id="delete">
+        DELETE FROM clubs
+        WHERE id = #{id}
+    </delete>
+
+</mapper>

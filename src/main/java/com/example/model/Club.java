@@ -1,10 +1,14 @@
 package com.example.model;
 
+import java.util.List;
+
 public class Club {
 
     private Long id;
     private String clubName;
-
+    private List<Player> players;
+    private Integer startYear;
+    private Integer endYear;
     public Club() {
     }
 
@@ -32,5 +36,29 @@ public class Club {
     @Override
     public String toString() {
         return "Club [id=" + id + ", clubName=" + clubName + "]";
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
+
+    public Integer getStartYear() {
+        return startYear;
+    }
+
+    public void setStartYear(Integer startYear) {
+        this.startYear = startYear;
+    }
+
+    public Integer getEndYear() {
+        return endYear;
+    }
+
+    public void setEndYear(Integer endYear) {
+        this.endYear = endYear;
     }
 }

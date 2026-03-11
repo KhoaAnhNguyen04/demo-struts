@@ -16,11 +16,17 @@
         Home
       </a>
 
-      <a href="players" class="hover:text-purple-800 transition duration-300">
+      <a
+        href="player-management"
+        class="hover:text-purple-800 transition duration-300"
+      >
         Players
       </a>
 
-      <a href="#" class="hover:text-purple-800 transition duration-300">
+      <a
+        href="club-management"
+        class="hover:text-purple-800 transition duration-300"
+      >
         Clubs
       </a>
 

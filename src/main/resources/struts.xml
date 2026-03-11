@@ -21,5 +21,17 @@
         <action name="player-create" class="com.example.action.PlayerAction" method="create">
             <result name="success" type="redirect">player-management</result>
         </action>
+        <action name="club-management" class="com.example.action.ClubAction" method="list">
+            <result name="success">/WEB-INF/pages/club-management/club-management.jsp</result>
+        </action>
+        <action name="club-detail" class="com.example.action.ClubAction" method="detail">
+            <result name="success">/WEB-INF/pages/club-detail/club-detail.jsp</result>
+        </action>
+        <action name="club-update" class="com.example.action.ClubAction" method="update">
+            <result name="success" type="redirect">club-management</result>
+        </action>
+        <action name="club-create" class="com.example.action.ClubAction" method="create">
+            <result name="success" type="redirect">club-management</result>
+        </action>
     </package>
 </struts>

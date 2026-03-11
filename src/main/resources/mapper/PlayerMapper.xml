@@ -15,6 +15,8 @@
         <collection property="clubs" ofType="Club">
             <id property="id" column="id"/>
             <result property="clubName" column="club_name"/>
+            <result property="startYear" column="year_joined"/>
+            <result property="endYear" column="year_left"/>
         </collection>
     </resultMap>
 
@@ -26,8 +28,9 @@
             p.birth_year,
             p.shirt_number,
             c.id as id,
-            c.club_name
-
+            c.club_name,
+            pc.year_joined,
+            pc.year_left
         FROM players p
         LEFT JOIN player_clubs pc ON p.id = pc.player_id
         LEFT JOIN clubs c ON pc.club_id = c.id
