@@ -12,7 +12,7 @@
     <typeAliases>
         <typeAlias alias="Player" type="com.example.model.Player"/>
         <typeAlias alias="Club" type="com.example.model.Club"/>
-
+        <typeAlias alias="PlayerClub" type="com.example.model.PlayerClub"/>
     </typeAliases>
 
     <environments default="development">
@@ -30,7 +30,7 @@
     <mappers>
         <mapper resource="mapper/PlayerMapper.xml"/>
         <mapper resource="mapper/ClubMapper.xml"/>
-
+        <mapper resource="mapper/PlayerClubMapper.xml"/>
     </mappers>
 
 </configuration>

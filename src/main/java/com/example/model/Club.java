@@ -6,9 +6,9 @@ public class Club {
 
     private Long id;
     private String clubName;
-    private List<Player> players;
-    private Integer startYear;
-    private Integer endYear;
+    private List<PlayerClub> playerClubs;
+
+
     public Club() {
     }
 
@@ -38,27 +38,12 @@ public class Club {
         return "Club [id=" + id + ", clubName=" + clubName + "]";
     }
 
-    public List<Player> getPlayers() {
-        return players;
+    public List<PlayerClub> getPlayerClubs() {
+        return playerClubs;
     }
 
-    public void setPlayers(List<Player> players) {
-        this.players = players;
+    public void setPlayerClubs(List<PlayerClub> playerClubs) {
+        this.playerClubs = playerClubs;
     }
 
-    public Integer getStartYear() {
-        return startYear;
-    }
-
-    public void setStartYear(Integer startYear) {
-        this.startYear = startYear;
-    }
-
-    public Integer getEndYear() {
-        return endYear;
-    }
-
-    public void setEndYear(Integer endYear) {
-        this.endYear = endYear;
-    }
 }

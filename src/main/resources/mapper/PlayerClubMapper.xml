@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.PlayerClubMapper">
+
+    <resultMap id="PlayerClubResultMap" type="PlayerClub">
+        <id property="id" column="id"/>
+        <result property="yearJoined" column="year_joined"/>
+        <result property="yearLeft" column="year_left"/>
+
+        <association property="player" javaType="Player">
+            <id property="id" column="player_id"/>
+            <result property="fullName" column="full_name"/>
+            <result property="position" column="position"/>
+            <result property="birthYear" column="birth_year"/>
+        </association>
+
+        <association property="club" javaType="Club">
+            <id property="id" column="club_id"/>
+            <result property="clubName" column="club_name"/>
+        </association>
+    </resultMap>
+
+    <insert id="insert" parameterType="PlayerClub">
+        INSERT INTO player_clubs (
+            player_id,
+            club_id,
+            year_joined,
+            year_left
+        )
+        VALUES (
+            #{player.id},
+            #{club.id},
+            #{yearJoined},
+            #{yearLeft}
+        )
+    </insert>
+
+    <select id="findByClubId" resultMap="PlayerClubResultMap" parameterType="int">
+        SELECT
+            pc.id,
+            pc.player_id,
+            pc.club_id,
+            pc.year_joined,
+            pc.year_left,
+            p.full_name,
+            p.position,
+            p.birth_year,
+            c.club_name
+        FROM player_clubs pc
+        JOIN players p ON pc.player_id = p.id
+        JOIN clubs c ON pc.club_id = c.id
+        WHERE pc.club_id = #{clubId}
+        ORDER BY pc.year_joined DESC
+    </select>
+
+    <select id="findById" resultMap="PlayerClubResultMap" parameterType="int">
+        SELECT
+            pc.id,
+            pc.player_id,
+            pc.club_id,
+            pc.year_joined,
+            pc.year_left,
+            p.full_name,
+            p.position,
+            p.birth_year,
+            c.club_name
+        FROM player_clubs pc
+        JOIN players p ON pc.player_id = p.id
+        JOIN clubs c ON pc.club_id = c.id
+        WHERE pc.id = #{id}
+    </select>
+
+    <update id="update" parameterType="PlayerClub">
+        UPDATE player_clubs
+        SET
+            year_joined = #{yearJoined},
+            year_left = #{yearLeft}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM player_clubs
+        WHERE id = #{id}
+    </delete>
+
+    <select id="exists" resultType="int">
+        SELECT COUNT(*)
+        FROM player_clubs
+        WHERE club_id = #{clubId}
+          AND player_id = #{playerId}
+    </select>
+
+</mapper>

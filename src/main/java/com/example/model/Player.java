@@ -9,7 +9,7 @@ public class Player {
     private Integer birthYear;
     private Integer shirtNumber;
     private List<Club> clubs;
-
+    
     public Player() {
     }
 

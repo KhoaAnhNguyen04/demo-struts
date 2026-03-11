@@ -1,4 +1,5 @@
-<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags" %> <%@ page contentType="text/html;
+charset=UTF-8" pageEncoding="UTF-8" %>
 
 <div class="max-w-5xl mx-auto mt-8">
   <h2 class="text-2xl font-bold mb-4">Player List</h2>

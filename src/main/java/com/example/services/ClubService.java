@@ -17,17 +17,17 @@ public class ClubService {
         }
     }
 
-    public Club findById(Long id) {
+    public Club findById(Integer id) {
         try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
             ClubMapper mapper = session.getMapper(ClubMapper.class);
-            return mapper.findById(id);
+            return mapper.findById(id.longValue());
         }
     }
 
-    public Club getClubWithPlayers(Long id) {
+    public Club getClubWithPlayers(Integer id) {
         try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
             ClubMapper mapper = session.getMapper(ClubMapper.class);
-            return mapper.getClubWithPlayers(id);
+            return mapper.getClubWithPlayers(id.longValue());
         }
     }
 

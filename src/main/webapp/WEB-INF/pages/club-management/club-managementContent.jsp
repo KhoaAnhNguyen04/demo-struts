@@ -16,11 +16,11 @@
       <tbody class="text-gray-700">
         <s:iterator value="clubs" var="c">
           <s:url action="club-detail" var="detailUrl">
-            <s:param name="id" value="#c.id" />
+            <s:param name="clubId" value="#c.id" />
           </s:url>
 
           <s:url action="club-delete" var="deleteUrl">
-            <s:param name="id" value="#c.id" />
+            <s:param name="clubId" value="#c.id" />
           </s:url>
 
           <tr class="hover:bg-gray-50 transition">
