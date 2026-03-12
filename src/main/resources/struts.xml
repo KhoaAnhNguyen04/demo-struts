@@ -42,5 +42,28 @@
         <action name="club-add-player" class="com.example.action.ClubAction" method="addPlayerToClub">
             <result type="redirect">club-detail?clubId=${clubId}</result>
         </action>
+
+
+        <action name="country-management" class="com.example.action.CountryAction" method="list">
+            <result>/WEB-INF/pages/country-management/country-management.jsp</result>
+        </action>
+
+        <action name="country-create-form" class="com.example.action.CountryAction" method="createForm">
+            <result>/WEB-INF/pages/country-management/country-create.jsp</result>
+        </action>
+
+        <action name="country-create" class="com.example.action.CountryAction" method="create">
+            <result name="success" type="redirectAction">country-management</result>
+            <result name="input">/WEB-INF/pages/country-management/country-create.jsp</result>
+        </action>
+
+        <action name="country-detail" class="com.example.action.CountryAction" method="detail">
+            <result>/WEB-INF/pages/country-management/country-detail.jsp</result>
+            <result name="error" type="redirectAction">country-management</result>
+        </action>
+
+        <action name="country-delete" class="com.example.action.CountryAction" method="delete">
+            <result type="redirectAction">country-management</result>
+        </action>
     </package>
 </struts>

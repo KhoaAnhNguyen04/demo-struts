@@ -12,6 +12,7 @@
     <resultMap id="ClubResultMap" type="Club">
         <id property="id" column="id"/>
         <result property="clubName" column="club_name"/>
+        <result property="imgUrl" column="img_url"/>
     </resultMap>
 
 
@@ -59,6 +60,7 @@
             c.id as club_id,
             pc.id as player_club_id,
             c.club_name,
+            c.img_url,
             pc.year_joined,
             pc.year_left,
             p.id as player_id,

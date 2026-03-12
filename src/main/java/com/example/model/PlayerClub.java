@@ -44,7 +44,4 @@ public class PlayerClub {
                 + ", club=" + club + "]";
     }
     
-    
-
-    
 }

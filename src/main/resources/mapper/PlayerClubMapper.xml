@@ -5,22 +5,25 @@
 
 <mapper namespace="com.example.mapper.PlayerClubMapper">
 
+    <resultMap id="CountryResultMap" type="Country">
+        <id property="id" column="country_id"/>
+        <result property="countryName" column="country_name"/>
+        <result property="imgUrl" column="img_url"/>
+    </resultMap>
+    <resultMap id="PlayerResultMap" type="Player">
+        <id property="id" column="player_id"/>
+        <result property="fullName" column="full_name"/>
+        <result property="position" column="position"/>
+        <result property="birthYear" column="birth_year"/>
+        <association property="country" resultMap="CountryResultMap"/>
+    </resultMap>
+
     <resultMap id="PlayerClubResultMap" type="PlayerClub">
         <id property="id" column="id"/>
         <result property="yearJoined" column="year_joined"/>
         <result property="yearLeft" column="year_left"/>
 
-        <association property="player" javaType="Player">
-            <id property="id" column="player_id"/>
-            <result property="fullName" column="full_name"/>
-            <result property="position" column="position"/>
-            <result property="birthYear" column="birth_year"/>
-        </association>
-
-        <association property="club" javaType="Club">
-            <id property="id" column="club_id"/>
-            <result property="clubName" column="club_name"/>
-        </association>
+        <association property="player" resultMap="PlayerResultMap"/>
     </resultMap>
 
     <insert id="insert" parameterType="PlayerClub">

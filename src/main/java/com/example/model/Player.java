@@ -8,6 +8,8 @@ public class Player {
     private String position;
     private Integer birthYear;
     private Integer shirtNumber;
+    private Country country;
+    
     private List<PlayerClub> playerClubs;
     
     public Player() {
@@ -75,6 +77,14 @@ public class Player {
                 + ", getFullName()=" + getFullName() + ", getPosition()=" + getPosition() + ", getBirthYear()="
                 + getBirthYear() + ", getShirtNumber()=" + getShirtNumber() + ", getPlayerClubs()=" + getPlayerClubs()
                 + "]";
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
     
     

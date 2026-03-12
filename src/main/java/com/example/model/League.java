@@ -1,8 +1,12 @@
 package com.example.model;
 
+import java.util.List;
+
 public class League {
-    Long id;
-    String leagueName;
+    private Long id;
+    private String leagueName;
+    private List<Club> clubs;
+    private Country country;
 
     public League() {
     }
@@ -26,5 +30,21 @@ public class League {
 
     public void setLeagueName(String leagueName) {
         this.leagueName = leagueName;
+    }
+
+    public List<Club> getClubs() {
+        return clubs;
+    }
+
+    public void setClubs(List<Club> clubs) {
+        this.clubs = clubs;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }

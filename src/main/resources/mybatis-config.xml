@@ -31,6 +31,7 @@
         <mapper resource="mapper/PlayerMapper.xml"/>
         <mapper resource="mapper/ClubMapper.xml"/>
         <mapper resource="mapper/PlayerClubMapper.xml"/>
+        <mapper resource="mapper/CountryMapper.xml"/>
     </mappers>
 
 </configuration>

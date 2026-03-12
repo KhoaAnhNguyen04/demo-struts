@@ -6,15 +6,18 @@ public class Club {
 
     private Long id;
     private String clubName;
+    private String imgUrl;
+    
     private List<PlayerClub> playerClubs;
 
 
     public Club() {
     }
 
-    public Club(Long id, String clubName) {
+    public Club(Long id, String clubName, String imgUrl) {
         this.id = id;
         this.clubName = clubName;
+        this.imgUrl = imgUrl;
     }
 
     public Long getId() {
@@ -44,6 +47,14 @@ public class Club {
 
     public void setPlayerClubs(List<PlayerClub> playerClubs) {
         this.playerClubs = playerClubs;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
 }
