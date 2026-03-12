@@ -12,7 +12,6 @@ uri="/struts-tags" %>
       <s:property value="player.id" />
     </p>
   </div>
-
   <!-- UPDATE FORM -->
   <div class="bg-white shadow-md rounded-lg p-6 mb-8">
     <h2 class="text-xl font-semibold mb-4">Update Player</h2>
@@ -81,35 +80,7 @@ uri="/struts-tags" %>
     </s:form>
   </div>
 
-  <!-- CLUB LIST -->
-  <div class="bg-white shadow-md rounded-xl p-6 mb-8">
-    <h3 class="text-xl font-semibold mb-6 text-gray-800 border-b pb-2">
-      Club History
-    </h3>
-
-    <div class="space-y-3">
-      <s:iterator value="player.clubs">
-        <div
-          class="flex justify-between items-center p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition"
-        >
-          <!-- Club Name -->
-          <div class="font-medium text-gray-800">
-            <s:property value="clubName" />
-          </div>
-
-          <!-- Years -->
-          <div class="text-sm text-gray-500">
-            <s:if test="startYear != null">
-              <span class="bg-gray-100 px-2 py-1 rounded">
-                <s:property value="startYear" /> -
-                <s:property value="endYear != null ? endYear : 'Present'" />
-              </span>
-            </s:if>
-          </div>
-        </div>
-      </s:iterator>
-    </div>
-  </div>
+  <jsp:include page="./club-history.jsp" />
 
   <!-- BACK BUTTON -->
   <a

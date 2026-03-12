@@ -5,32 +5,40 @@
 
 <mapper namespace="com.example.mapper.PlayerMapper">
 
-    <resultMap id="PlayerResultMap" type="Player">
-        <id property="id" column="id"/>
+    <resultMap id="ClubResultMap" type="Club">
+        <id property="id" column="club_id"/>
+        <result property="clubName" column="club_name"/>
+    </resultMap>
+
+    <resultMap id="PlayerClubResultMap" type="PlayerClub">
+        <id property="id" column="player_club_id"/>
+        <result property="yearJoined" column="year_joined"/>
+        <result property="yearLeft" column="year_left"/>
+        <association property="club" resultMap="ClubResultMap"/>
+    </resultMap>
+
+    <resultMap id="PlayerWithClubsResultMap" type="Player">
+        <id property="id" column="player_id"/>
         <result property="fullName" column="full_name"/>
         <result property="position" column="position"/>
         <result property="birthYear" column="birth_year"/>
         <result property="shirtNumber" column="shirt_number"/>
 
-        <collection property="clubs" ofType="Club">
-            <id property="id" column="id"/>
-            <result property="clubName" column="club_name"/>
-            <result property="startYear" column="year_joined"/>
-            <result property="endYear" column="year_left"/>
-        </collection>
+        <collection property="playerClubs" resultMap="PlayerClubResultMap"/>
     </resultMap>
 
-    <select id="getPlayerWithClubs" resultMap="PlayerResultMap">
+    <select id="getPlayerWithClubs" resultMap="PlayerWithClubsResultMap">
         SELECT 
-            p.id as id,
+            p.id as player_id,
             p.full_name,
             p.position,
             p.birth_year,
             p.shirt_number,
-            c.id as id,
+            c.id as club_id,
             c.club_name,
-            pc.year_joined,
-            pc.year_left
+            pc.id as player_club_id,
+            pc.year_joined as year_joined,
+            pc.year_left as year_left
         FROM players p
         LEFT JOIN player_clubs pc ON p.id = pc.player_id
         LEFT JOIN clubs c ON pc.club_id = c.id

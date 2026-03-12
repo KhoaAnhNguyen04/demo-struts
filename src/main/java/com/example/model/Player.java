@@ -8,7 +8,7 @@ public class Player {
     private String position;
     private Integer birthYear;
     private Integer shirtNumber;
-    private List<Club> clubs;
+    private List<PlayerClub> playerClubs;
     
     public Player() {
     }
@@ -61,21 +61,21 @@ public class Player {
         this.shirtNumber = shirtNumber;
     }
 
-    public List<Club> getClubs() {
-        return clubs;
+    public List<PlayerClub> getPlayerClubs() {
+        return playerClubs;
     }
-    public void setClubs(List<Club> clubs) {
-    this.clubs = clubs;
-    
-}
-@Override
+    public void setPlayerClubs(List<PlayerClub> playerClubs) {
+        this.playerClubs = playerClubs;
+    }
+
+    @Override
     public String toString() {
-        return "Player{" +
-                "id=" + id +
-                ", fullName='" + fullName + '\'' +
-                ", position='" + position + '\'' +
-                ", birthYear=" + birthYear +
-                ", shirtNumber=" + shirtNumber +
-                '}';
+        return "Player [id=" + id + ", fullName=" + fullName + ", position=" + position + ", birthYear=" + birthYear
+                + ", shirtNumber=" + shirtNumber + ", playerClubs=" + playerClubs + ", getId()=" + getId()
+                + ", getFullName()=" + getFullName() + ", getPosition()=" + getPosition() + ", getBirthYear()="
+                + getBirthYear() + ", getShirtNumber()=" + getShirtNumber() + ", getPlayerClubs()=" + getPlayerClubs()
+                + "]";
     }
+    
+    
 }

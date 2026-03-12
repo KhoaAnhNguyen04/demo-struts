@@ -8,7 +8,6 @@ public class PlayerClub {
 
     private Player player;
     private Club club;
-    
     public Long getId() {
         return id;
     }
@@ -39,7 +38,13 @@ public class PlayerClub {
     public void setClub(Club club) {
         this.club = club;
     }
+    @Override
+    public String toString() {
+        return "PlayerClub [id=" + id + ", yearJoined=" + yearJoined + ", yearLeft=" + yearLeft + ", player=" + player
+                + ", club=" + club + "]";
+    }
+    
+    
 
-    // getter/setter
     
 }
