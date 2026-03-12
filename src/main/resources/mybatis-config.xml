@@ -13,6 +13,7 @@
         <typeAlias alias="Player" type="com.example.model.Player"/>
         <typeAlias alias="Club" type="com.example.model.Club"/>
         <typeAlias alias="PlayerClub" type="com.example.model.PlayerClub"/>
+        <typeAlias alias="Country" type="com.example.model.Country"/>
     </typeAliases>
 
     <environments default="development">

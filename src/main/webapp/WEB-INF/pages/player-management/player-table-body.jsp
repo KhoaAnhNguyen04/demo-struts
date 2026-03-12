@@ -13,6 +13,9 @@ charset=UTF-8" pageEncoding="UTF-8" %>
     <td class="px-4 py-2 border"><s:property value="#p.position" /></td>
     <td class="px-4 py-2 border"><s:property value="#p.birthYear" /></td>
     <td class="px-4 py-2 border"><s:property value="#p.shirtNumber" /></td>
+    <td class="px-4 py-2 border">
+      <s:property value="#p.country.countryName" />
+    </td>
     <td class="px-4 py-2 border text-center space-x-2">
       <a
         href="${detailUrl}"

@@ -1,36 +1,53 @@
 <!DOCTYPE struts PUBLIC
- "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
- "http://struts.apache.org/dtds/struts-2.5.dtd">
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
     <constant name="struts.devMode" value="true"/>
 
     <package name="default" namespace="/" extends="struts-default">
+
+        <!-- =========================
+             COMMON
+        ========================== -->
         <action name="index">
             <result type="redirect">player-management</result>
         </action>
+
+        <!-- =========================
+             PLAYER
+        ========================== -->
         <action name="player-management" class="com.example.action.PlayerAction" method="list">
             <result name="success">/WEB-INF/pages/player-management/player-management.jsp</result>
         </action>
+
         <action name="player-detail" class="com.example.action.PlayerAction" method="detail">
             <result name="success">/WEB-INF/pages/player-detail/player-detail.jsp</result>
         </action>
+
         <action name="player-update" class="com.example.action.PlayerAction" method="update">
             <result name="success" type="redirect">player-management</result>
         </action>
+
         <action name="player-create" class="com.example.action.PlayerAction" method="create">
             <result name="success" type="redirect">player-management</result>
         </action>
 
+        <!-- =========================
+             CLUB
+        ========================== -->
         <action name="club-management" class="com.example.action.ClubAction" method="list">
             <result name="success">/WEB-INF/pages/club-management/club-management.jsp</result>
         </action>
+
         <action name="club-detail" class="com.example.action.ClubAction" method="detail">
             <result name="success">/WEB-INF/pages/club-detail/club-detail.jsp</result>
         </action>
+
         <action name="club-update" class="com.example.action.ClubAction" method="update">
             <result name="success" type="redirect">club-management</result>
         </action>
+
         <action name="club-create" class="com.example.action.ClubAction" method="create">
             <result name="success" type="redirect">club-management</result>
         </action>
@@ -43,7 +60,9 @@
             <result type="redirect">club-detail?clubId=${clubId}</result>
         </action>
 
-
+        <!-- =========================
+             COUNTRY
+        ========================== -->
         <action name="country-management" class="com.example.action.CountryAction" method="list">
             <result>/WEB-INF/pages/country-management/country-management.jsp</result>
         </action>
@@ -53,8 +72,8 @@
         </action>
 
         <action name="country-create" class="com.example.action.CountryAction" method="create">
-            <result name="success" type="redirectAction">country-management</result>
-            <result name="input">/WEB-INF/pages/country-management/country-create.jsp</result>
+            <result name="success" type="redirect">country-management</result>
+            <result name="input" type="redirect">country-management</result>
         </action>
 
         <action name="country-detail" class="com.example.action.CountryAction" method="detail">
@@ -65,5 +84,6 @@
         <action name="country-delete" class="com.example.action.CountryAction" method="delete">
             <result type="redirectAction">country-management</result>
         </action>
+
     </package>
 </struts>

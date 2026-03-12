@@ -3,13 +3,11 @@ package com.example.model;
 import java.util.List;
 
 public class Club {
-
     private Long id;
     private String clubName;
     private String imgUrl;
     
     private List<PlayerClub> playerClubs;
-
 
     public Club() {
     }
@@ -21,7 +19,7 @@ public class Club {
     }
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -29,7 +27,7 @@ public class Club {
     }
 
     public String getClubName() {
-        return clubName;
+        return this.clubName;
     }
 
     public void setClubName(String clubName) {
@@ -42,7 +40,7 @@ public class Club {
     }
 
     public List<PlayerClub> getPlayerClubs() {
-        return playerClubs;
+        return this.playerClubs;
     }
 
     public void setPlayerClubs(List<PlayerClub> playerClubs) {
@@ -50,7 +48,7 @@ public class Club {
     }
 
     public String getImgUrl() {
-        return imgUrl;
+        return this.imgUrl;
     }
 
     public void setImgUrl(String imgUrl) {

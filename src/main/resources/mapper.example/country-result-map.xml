@@ -1,0 +1,5 @@
+<resultMap id="CountryResultMap" type="Country">
+    <id property="id" column="country_id"/>
+    <result property="countryName" column="country_name"/>
+    <result property="imgUrl" column="country_img_url"/>
+</resultMap>

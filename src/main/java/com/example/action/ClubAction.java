@@ -18,6 +18,8 @@ public class ClubAction extends ActionSupport {
     private List<Club> clubs;
     private Club club;
     private Integer clubId;
+    private String imgUrl;
+// 
     private List<Player> players;
     private String clubName;
 
@@ -58,7 +60,8 @@ public class ClubAction extends ActionSupport {
     public String create() {
         Club newClub = new Club();
         newClub.setClubName(clubName);
-
+        newClub.setImgUrl(imgUrl);
+        
         clubService.insert(newClub);
         return SUCCESS;
     }
@@ -70,6 +73,7 @@ public class ClubAction extends ActionSupport {
         Club updatedClub = new Club();
         updatedClub.setId(clubId.longValue());
         updatedClub.setClubName(clubName);
+        updatedClub.setImgUrl(imgUrl);
 
         clubService.update(updatedClub);
         return SUCCESS;
@@ -141,4 +145,11 @@ public class ClubAction extends ActionSupport {
         this.yearLeft = yearLeft;
     }
 
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
 }

@@ -70,15 +70,6 @@ public class Player {
         this.playerClubs = playerClubs;
     }
 
-    @Override
-    public String toString() {
-        return "Player [id=" + id + ", fullName=" + fullName + ", position=" + position + ", birthYear=" + birthYear
-                + ", shirtNumber=" + shirtNumber + ", playerClubs=" + playerClubs + ", getId()=" + getId()
-                + ", getFullName()=" + getFullName() + ", getPosition()=" + getPosition() + ", getBirthYear()="
-                + getBirthYear() + ", getShirtNumber()=" + getShirtNumber() + ", getPlayerClubs()=" + getPlayerClubs()
-                + "]";
-    }
-
     public Country getCountry() {
         return country;
     }
@@ -86,6 +77,11 @@ public class Player {
     public void setCountry(Country country) {
         this.country = country;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Player [id=" + id + ", fullName=" + fullName + ", position=" + position + ", birthYear=" + birthYear
+                + ", shirtNumber=" + shirtNumber + ", country=" + country + ", playerClubs=" + playerClubs + "]";
+    }
     
 }

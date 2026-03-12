@@ -6,9 +6,8 @@
 <mapper namespace="com.example.mapper.ClubMapper">
 
     <!-- ========================= -->
-    <!-- RESULT MAP -->
+    <!-- RESULT MAP: CLUB -->
     <!-- ========================= -->
-
     <resultMap id="ClubResultMap" type="Club">
         <id property="id" column="id"/>
         <result property="clubName" column="club_name"/>
@@ -16,29 +15,39 @@
     </resultMap>
 
 
-    <!-- Club with players -->
-    <resultMap id="ClubWithPlayersResultMap" type="Club">
-        <id property="id" column="club_id"/>
-        <result property="clubName" column="club_name"/>
-
-        <collection property="playerClubs" ofType="PlayerClub">
-            <id property="id" column="player_club_id"/>
-            <result property="yearJoined" column="year_joined"/>
-            <result property="yearLeft" column="year_left"/>
-
-            <association property="player" javaType="Player">
-                <id property="id" column="player_id"/>
-                <result property="fullName" column="full_name"/>
-                <result property="position" column="position"/>
-                <result property="birthYear" column="birth_year"/>
-            </association>
-        </collection>
+    <!-- ========================= -->
+    <!-- RESULT MAP: PLAYER -->
+    <!-- ========================= -->
+    <resultMap id="PlayerResultMap" type="Player">
+        <id property="id" column="player_id"/>
+        <result property="fullName" column="full_name"/>
+        <result property="position" column="position"/>
+        <result property="birthYear" column="birth_year"/>
     </resultMap>
 
 
     <!-- ========================= -->
-    <!-- SELECT -->
+    <!-- RESULT MAP: PLAYER_CLUB -->
     <!-- ========================= -->
+    <resultMap id="PlayerClubResultMap" type="PlayerClub">
+        <id property="id" column="player_club_id"/>
+        <result property="yearJoined" column="year_joined"/>
+        <result property="yearLeft" column="year_left"/>
+
+        <association property="player" resultMap="PlayerResultMap"/>
+    </resultMap>
+
+
+    <!-- ========================= -->
+    <!-- RESULT MAP: CLUB WITH PLAYERS -->
+    <!-- ========================= -->
+    <resultMap id="ClubWithPlayersResultMap" type="Club">
+        <id property="id" column="club_id"/>
+        <result property="clubName" column="club_name"/>
+        <result property="imgUrl" column="img_url"/>
+
+        <collection property="playerClubs" resultMap="PlayerClubResultMap"/>
+    </resultMap>
 
     <select id="findAll" resultType="Club">
         SELECT *
@@ -46,66 +55,42 @@
         ORDER BY id
     </select>
 
-
     <select id="findById" resultType="Club">
         SELECT *
         FROM clubs
         WHERE id = #{id}
     </select>
 
-
-    <!-- Get club with players -->
     <select id="getClubWithPlayers" resultMap="ClubWithPlayersResultMap">
         SELECT
             c.id as club_id,
-            pc.id as player_club_id,
             c.club_name,
             c.img_url,
+            pc.id as player_club_id,
             pc.year_joined,
             pc.year_left,
             p.id as player_id,
             p.full_name,
             p.position,
             p.birth_year
-
         FROM clubs c
-
-        LEFT JOIN player_clubs pc
-            ON c.id = pc.club_id
-
-        LEFT JOIN players p
-            ON pc.player_id = p.id
-
+        LEFT JOIN player_clubs pc ON c.id = pc.club_id
+        LEFT JOIN players p ON pc.player_id = p.id
         WHERE c.id = #{id}
     </select>
 
-
-    <!-- ========================= -->
-    <!-- INSERT -->
-    <!-- ========================= -->
-
     <insert id="insert" parameterType="Club" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO clubs (club_name)
-        VALUES (#{clubName})
+        INSERT INTO clubs (club_name, img_url)
+        VALUES (#{clubName}, #{imgUrl})
     </insert>
-
-
-    <!-- ========================= -->
-    <!-- UPDATE -->
-    <!-- ========================= -->
 
     <update id="update" parameterType="Club">
         UPDATE clubs
-        SET club_name = #{clubName}
+        SET club_name = #{clubName}, img_url = #{imgUrl}
         WHERE id = #{id}
     </update>
 
-
-    <!-- ========================= -->
-    <!-- DELETE -->
-    <!-- ========================= -->
-
-    <delete id="delete">
+    <delete id="delete" parameterType="long">
         DELETE FROM clubs
         WHERE id = #{id}
     </delete>

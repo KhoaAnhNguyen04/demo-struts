@@ -12,17 +12,18 @@
 
     <!-- Menu -->
     <div class="space-x-8 text-gray-300 font-medium">
-      <a href="index" class="hover:text-purple-800 transition duration-300">
-        Home
-      </a>
-
       <a
         href="player-management"
         class="hover:text-purple-800 transition duration-300"
       >
         Players
       </a>
-
+      <a
+        href="country-management"
+        class="hover:text-purple-800 transition duration-300"
+      >
+        Countries
+      </a>
       <a
         href="club-management"
         class="hover:text-purple-800 transition duration-300"

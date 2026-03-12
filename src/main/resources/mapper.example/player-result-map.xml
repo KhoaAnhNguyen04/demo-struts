@@ -1,0 +1,6 @@
+<resultMap id="PlayerResultMap" type="Player">
+    <id property="id" column="player_id"/>
+    <result property="fullName" column="full_name"/>
+    <result property="position" column="position"/>
+    <result property="birthYear" column="birth_year"/>
+</resultMap>

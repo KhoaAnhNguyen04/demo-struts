@@ -1,0 +1,5 @@
+<resultMap id="ClubResultMap" type="Club">
+    <id property="id" column="club_id"/>
+    <result property="clubName" column="club_name"/>
+    <result property="imgUrl" column="club_img_url"/>
+</resultMap>
