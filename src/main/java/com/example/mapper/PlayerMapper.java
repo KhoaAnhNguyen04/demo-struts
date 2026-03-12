@@ -7,13 +7,13 @@ import com.example.model.Player;
 public interface PlayerMapper {
     List<Player> findAll();
 
-    Player findById(Long id);
+    Player findById(Integer id);
 
-    Player getPlayerWithClubs(Long id);
+    Player getPlayerWithClubs(Integer id);
 
     void insert(Player Player);
 
     void update(Player Player);
 
-    void delete(Long id);
+    void delete(Integer id);
 }

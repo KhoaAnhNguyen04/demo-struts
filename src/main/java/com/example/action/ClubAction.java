@@ -71,7 +71,7 @@ public class ClubAction extends ActionSupport {
     // ========================
     public String update() {
         Club updatedClub = new Club();
-        updatedClub.setId(clubId.longValue());
+        updatedClub.setId(clubId);
         updatedClub.setClubName(clubName);
         updatedClub.setImgUrl(imgUrl);
 
@@ -83,7 +83,7 @@ public class ClubAction extends ActionSupport {
     // Delete club
     // ========================
     public String delete() {
-        clubService.delete(clubId.longValue());
+        clubService.delete(clubId);
         return SUCCESS;
     }
 

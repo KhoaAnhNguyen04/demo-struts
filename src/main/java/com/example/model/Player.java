@@ -3,7 +3,7 @@ package com.example.model;
 import java.util.List;
 
 public class Player {
-    private Long id;
+    private Integer id;
     private String fullName;
     private String position;
     private Integer birthYear;
@@ -15,7 +15,7 @@ public class Player {
     public Player() {
     }
 
-    public Player(Long id, String fullName, String position, Integer birthYear, Integer shirtNumber) {
+    public Player(Integer id, String fullName, String position, Integer birthYear, Integer shirtNumber) {
         this.id  = id;
         this.fullName = fullName;
         this.position = position;
@@ -23,11 +23,11 @@ public class Player {
         this.shirtNumber = shirtNumber;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

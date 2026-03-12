@@ -10,13 +10,13 @@ public interface PlayerClubMapper {
 
     void insert(PlayerClub playerClub);
 
-    List<PlayerClub> findByClubId(Long clubId);
+    List<PlayerClub> findByClubId(Integer clubId);
 
-    PlayerClub findById(Long id);
+    PlayerClub findById(Integer id);
 
     void update(PlayerClub playerClub);
 
-    void delete(Long id);
+    void delete(Integer id);
 
-    int exists(@Param("clubId") Long clubId, @Param("playerId") Long playerId);
+    int exists(@Param("clubId") Integer clubId, @Param("playerId") Integer playerId);
 }

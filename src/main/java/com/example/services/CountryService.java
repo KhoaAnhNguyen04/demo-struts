@@ -17,7 +17,7 @@ public class CountryService {
         }
     }
 
-    public Country findById(Long id) {
+    public Country findById(Integer id) {
         try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
             CountryMapper mapper = session.getMapper(CountryMapper.class);
             return mapper.findById(id);
@@ -32,7 +32,7 @@ public class CountryService {
         }
     }
 
-    public void delete(Long id) {
+    public void delete(Integer id) {
         try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
             CountryMapper mapper = session.getMapper(CountryMapper.class);
             mapper.delete(id);

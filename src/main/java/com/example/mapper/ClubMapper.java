@@ -6,13 +6,13 @@ import com.example.model.Club;
 public interface  ClubMapper {
     List<Club> findAll();
 
-    Club findById(Long id);
+    Club findById(Integer id);
 
-    Club getClubWithPlayers(Long id);
+    Club getClubWithPlayers(Integer id);
 
     void insert(Club club);
 
     void update(Club club);
 
-    void delete(Long id);
+    void delete(Integer id);
 }

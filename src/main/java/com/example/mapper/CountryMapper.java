@@ -8,11 +8,11 @@ import com.example.model.Country;
 public interface  CountryMapper {
     List<Country> findAll();
 
-    Country findById(Long id);
+    Country findById(Integer id);
 
     void insert(Country country);
 
     void update(Country country);
 
-    void delete(Long id);
+    void delete(Integer id);
 }

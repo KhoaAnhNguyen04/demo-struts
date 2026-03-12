@@ -17,14 +17,14 @@ public class PlayerService {
         }
     }
 
-    public Player findById(Long id) {
+    public Player findById(Integer id) {
         try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
             PlayerMapper mapper = session.getMapper(PlayerMapper.class);
             return mapper.findById(id);
         }
     }
 
-    public Player getPlayerWithClubs(Long id) {
+    public Player getPlayerWithClubs(Integer id) {
         try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
             PlayerMapper mapper = session.getMapper(PlayerMapper.class);
             return mapper.getPlayerWithClubs(id);
@@ -47,7 +47,7 @@ public class PlayerService {
         }
     }
 
-    public void delete(Long id) {
+    public void delete(Integer id) {
         try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
             PlayerMapper mapper = session.getMapper(PlayerMapper.class);
             mapper.delete(id);

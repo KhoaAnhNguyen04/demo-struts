@@ -90,7 +90,7 @@
         WHERE id = #{id}
     </update>
 
-    <delete id="delete" parameterType="long">
+    <delete id="delete" parameterType="Integer">
         DELETE FROM clubs
         WHERE id = #{id}
     </delete>

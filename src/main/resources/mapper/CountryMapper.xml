@@ -14,10 +14,10 @@
     <select id="findAll" resultMap="CountryResultMap">
         SELECT id, country_name, img_url
         FROM countries
-        ORDER BY id DESC
+        ORDER BY id ASC
     </select>
 
-    <select id="findById" parameterType="long" resultMap="CountryResultMap">
+    <select id="findById" parameterType="int" resultMap="CountryResultMap">
         SELECT id, country_name, img_url
         FROM countries
         WHERE id = #{id}
@@ -28,7 +28,7 @@
         VALUES (#{countryName}, #{imgUrl})
     </insert>
 
-    <delete id="delete" parameterType="long">
+    <delete id="delete" parameterType="int">
         DELETE FROM countries
         WHERE id = #{id}
     </delete>

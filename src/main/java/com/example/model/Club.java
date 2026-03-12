@@ -3,7 +3,7 @@ package com.example.model;
 import java.util.List;
 
 public class Club {
-    private Long id;
+    private Integer id;
     private String clubName;
     private String imgUrl;
     
@@ -12,17 +12,17 @@ public class Club {
     public Club() {
     }
 
-    public Club(Long id, String clubName, String imgUrl) {
+    public Club(Integer id, String clubName, String imgUrl) {
         this.id = id;
         this.clubName = clubName;
         this.imgUrl = imgUrl;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

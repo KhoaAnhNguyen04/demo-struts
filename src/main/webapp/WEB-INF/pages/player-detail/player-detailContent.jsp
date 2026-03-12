@@ -70,7 +70,22 @@ uri="/struts-tags" %>
           />
         </div>
       </div>
+      <div class="grid grid-cols-3 items-center gap-4">
+        <label class="text-sm font-medium text-gray-700"> Country </label>
 
+        <div class="col-span-2">
+          <s:select
+            name="countryId"
+            list="countries"
+            listKey="id"
+            listValue="countryName"
+            value="%{player.country.id}"
+            headerKey=""
+            headerValue="-- Choose a country --"
+            cssClass="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+          />
+        </div>
+      </div>
       <div class="pt-2">
         <s:submit
           value="Update Player"

@@ -2,21 +2,21 @@ package com.example.action;
 
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import com.example.model.Country;
 import com.example.model.Player;
+import com.example.services.CountryService;
 import com.example.services.PlayerService;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class PlayerAction extends ActionSupport {
-    private static final Logger logger = LogManager.getLogger(PlayerAction.class);
-
     private final PlayerService playerService = new PlayerService();
+    private final CountryService countryService = new CountryService();
 
     private List<Player> players;
+    private List<Country> countries;
     private Player player;
-    private Long id;
+    private Integer id;
+    private Integer countryId;
 
     private String fullName;
     private String position;
@@ -25,26 +25,24 @@ public class PlayerAction extends ActionSupport {
 
     public String list() {
         players = playerService.findAll();
-
-        logger.info("Players count: {}", players.size());
-
-        for (Player p : players) {
-            logger.info("Player: {}", p.getFullName());
-        }
+        countries = countryService.findAll();
         return SUCCESS;
     }
 
     public String detail() {
         player = playerService.getPlayerWithClubs(id);
+        countries = countryService.findAll();
         return SUCCESS;
     }
 
     public String create() {
         Player newPlayer = new Player();
+
         newPlayer.setFullName(fullName);
         newPlayer.setPosition(position);
         newPlayer.setBirthYear(birthYear);
         newPlayer.setShirtNumber(shirtNumber);
+        newPlayer.setCountry(countryService.findById(countryId));
 
         playerService.insert(newPlayer);
         return SUCCESS;
@@ -52,11 +50,13 @@ public class PlayerAction extends ActionSupport {
 
     public String update() {
         Player updatedPlayer = new Player();
+        
         updatedPlayer.setId(id);
         updatedPlayer.setFullName(fullName);
         updatedPlayer.setPosition(position);
         updatedPlayer.setBirthYear(birthYear);
         updatedPlayer.setShirtNumber(shirtNumber);
+        updatedPlayer.setCountry(countryService.findById(countryId));
 
         playerService.update(updatedPlayer);
         return SUCCESS;
@@ -75,11 +75,11 @@ public class PlayerAction extends ActionSupport {
         return player;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -113,5 +113,21 @@ public class PlayerAction extends ActionSupport {
 
     public void setShirtNumber(Integer shirtNumber) {
         this.shirtNumber = shirtNumber;
+    }
+
+    public List<Country> getCountries() {
+        return countries;
+    }
+
+    public void setCountries(List<Country> countries) {
+        this.countries = countries;
+    }
+
+    public Integer getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(Integer countryId) {
+        this.countryId = countryId;
     }
 }

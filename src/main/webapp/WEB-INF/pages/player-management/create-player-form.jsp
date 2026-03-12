@@ -1,5 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %> <%@ page contentType="text/html;
 charset=UTF-8" pageEncoding="UTF-8" %>
+
 <s:form action="player-create" cssClass="space-y-4" theme="simple">
   <div>
     <label class="block text-sm font-medium text-gray-700 mb-1">
@@ -38,6 +39,21 @@ charset=UTF-8" pageEncoding="UTF-8" %>
     <s:textfield
       name="shirtNumber"
       cssClass="text-gray-700 w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+    />
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-1">
+      Country
+    </label>
+    <s:select
+      name="countryId"
+      list="countries"
+      listKey="id"
+      listValue="countryName"
+      headerKey=""
+      headerValue="-- Choose a country --"
+      cssClass="text-gray-700 w-full border rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400"
     />
   </div>
 

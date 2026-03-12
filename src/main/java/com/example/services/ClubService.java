@@ -20,14 +20,14 @@ public class ClubService {
     public Club findById(Integer id) {
         try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
             ClubMapper mapper = session.getMapper(ClubMapper.class);
-            return mapper.findById(id.longValue());
+            return mapper.findById(id);
         }
     }
 
     public Club getClubWithPlayers(Integer id) {
         try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
             ClubMapper mapper = session.getMapper(ClubMapper.class);
-            return mapper.getClubWithPlayers(id.longValue());
+            return mapper.getClubWithPlayers(id);
         }
     }
 
@@ -47,7 +47,7 @@ public class ClubService {
         }
     }
 
-    public void delete(Long id) {
+    public void delete(Integer id) {
         try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
             ClubMapper mapper = session.getMapper(ClubMapper.class);
             mapper.delete(id);

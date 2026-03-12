@@ -19,10 +19,10 @@ public class PlayerClubService {
             PlayerClub playerClub = new PlayerClub();
 
             Club club = new Club();
-            club.setId(clubId.longValue());
+            club.setId(clubId);
 
             Player player = new Player();
-            player.setId(playerId.longValue());
+            player.setId(playerId);
 
             playerClub.setClub(club);
             playerClub.setPlayer(player);
@@ -34,7 +34,7 @@ public class PlayerClubService {
         }
     }
 
-    public List<PlayerClub> findByClubId(Long clubId) {
+    public List<PlayerClub> findByClubId(Integer clubId) {
         try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
             PlayerClubMapper mapper = session.getMapper(PlayerClubMapper.class);
             return mapper.findByClubId(clubId);
@@ -44,7 +44,7 @@ public class PlayerClubService {
     public PlayerClub findById(Integer id) {
         try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
             PlayerClubMapper mapper = session.getMapper(PlayerClubMapper.class);
-            return mapper.findById(id.longValue());
+            return mapper.findById(id);
         }
     }
 
@@ -53,7 +53,7 @@ public class PlayerClubService {
             PlayerClubMapper mapper = session.getMapper(PlayerClubMapper.class);
 
             PlayerClub playerClub = new PlayerClub();
-            playerClub.setId(id.longValue());
+            playerClub.setId(id);
             playerClub.setYearJoined(yearJoined);
             playerClub.setYearLeft(yearLeft);
 
@@ -65,7 +65,7 @@ public class PlayerClubService {
     public void delete(Integer id) {
         try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
             PlayerClubMapper mapper = session.getMapper(PlayerClubMapper.class);
-            mapper.delete(id.longValue());
+            mapper.delete(id);
             session.commit();
         }
     }
@@ -73,7 +73,7 @@ public class PlayerClubService {
     public boolean exists(Integer clubId, Integer playerId) {
         try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
             PlayerClubMapper mapper = session.getMapper(PlayerClubMapper.class);
-            return mapper.exists(clubId.longValue(), playerId.longValue()) > 0;
+            return mapper.exists(clubId, playerId) > 0;
         }
     }
 }

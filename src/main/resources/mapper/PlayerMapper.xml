@@ -106,13 +106,15 @@
             full_name,
             position,
             birth_year,
-            shirt_number
+            shirt_number,
+            country_id
         )
         VALUES (
             #{fullName},
             #{position},
             #{birthYear},
-            #{shirtNumber}
+            #{shirtNumber},
+            #{country.id}
         )
     </insert>
 
@@ -122,7 +124,8 @@
             full_name = #{fullName},
             position = #{position},
             birth_year = #{birthYear},
-            shirt_number = #{shirtNumber}
+            shirt_number = #{shirtNumber},
+            country_id = #{country.id}
         WHERE id = #{id}
     </update>
 

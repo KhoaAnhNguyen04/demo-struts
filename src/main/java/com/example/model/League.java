@@ -3,7 +3,7 @@ package com.example.model;
 import java.util.List;
 
 public class League {
-    private Long id;
+    private Integer id;
     private String leagueName;
     private List<Club> clubs;
     private Country country;
@@ -11,16 +11,16 @@ public class League {
     public League() {
     }
 
-    public League(Long id, String leagueName) {
+    public League(Integer id, String leagueName) {
         this.id = id;
         this.leagueName = leagueName;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

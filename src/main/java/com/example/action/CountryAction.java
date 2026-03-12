@@ -7,7 +7,7 @@ import com.example.services.CountryService;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class CountryAction extends ActionSupport {
-    private Long id;
+    private Integer id;
     private String countryName;
     private String imgUrl;
 
@@ -27,7 +27,7 @@ public class CountryAction extends ActionSupport {
             return ERROR;
         }
 
-        country = countryService.findById(id);
+        country = countryService.findById(id.intValue());
 
         if (country == null) {
             addActionError("Country not found");
@@ -67,11 +67,11 @@ public class CountryAction extends ActionSupport {
 
     // Getters & Setters
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -2,16 +2,16 @@ package com.example.model;
 
 
 public class PlayerClub {
-    private Long id;
+    private Integer id;
     private Integer yearJoined;
     private Integer yearLeft;
 
     private Player player;
     private Club club;
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public Integer getYearJoined() {
