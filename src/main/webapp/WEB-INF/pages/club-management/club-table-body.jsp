@@ -18,6 +18,10 @@ charset=UTF-8" pageEncoding="UTF-8" %>
       <s:property value="#c.clubName" />
     </td>
 
+    <td class="px-4 py-2 border font-medium">
+      <img src="<s:property value="#c.imgUrl" />" alt="<s:property value="#c.clubName" />" class="w-16 h-16 object-cover rounded-full" />
+    </td>
+
     <td class="px-4 py-2 border text-center space-x-2">
       <a
         href="${detailUrl}"

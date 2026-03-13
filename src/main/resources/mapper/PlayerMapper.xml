@@ -15,6 +15,11 @@
         <id property="id" column="player_club_id"/>
         <result property="yearJoined" column="year_joined"/>
         <result property="yearLeft" column="year_left"/>
+        <result property="appearances" column="appearances"/>
+        <result property="goals" column="goals"/>
+        <result property="assists" column="assists"/>
+        <result property="cleanSheets" column="clean_sheets"/>
+
         <association property="club" resultMap="ClubResultMap"/>
     </resultMap>
 
@@ -63,6 +68,16 @@
         c.img_url AS club_img_url
     </sql>
 
+    <sql id="PlayerClubColumns">
+        pc.id AS player_club_id,
+        pc.year_joined,
+        pc.year_left,
+        pc.appearances,
+        pc.goals,
+        pc.assists,
+        pc.clean_sheets
+    </sql>
+
     <select id="getPlayerWithClubs" parameterType="int" resultMap="PlayerWithClubsResultMap">
         SELECT
         <include refid="PlayerColumns"/>
@@ -71,9 +86,8 @@
 ,
         <include refid="ClubColumns"/>
 ,
-            pc.id AS player_club_id,
-            pc.year_joined,
-            pc.year_left
+        <include refid="PlayerClubColumns"/>
+
         FROM players p
         LEFT JOIN countries co ON p.country_id = co.id
         LEFT JOIN player_clubs pc ON p.id = pc.player_id

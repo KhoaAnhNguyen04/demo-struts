@@ -23,6 +23,12 @@ public class PlayerAction extends ActionSupport {
     private Integer birthYear;
     private Integer shirtNumber;
 
+    private Integer appearances;
+    private Integer goals;
+    private Integer assists;
+    private Integer cleanSheets;
+    
+
     public String list() {
         players = playerService.findAll();
         countries = countryService.findAll();
@@ -32,6 +38,7 @@ public class PlayerAction extends ActionSupport {
     public String detail() {
         player = playerService.getPlayerWithClubs(id);
         countries = countryService.findAll();
+        
         return SUCCESS;
     }
 
@@ -57,6 +64,7 @@ public class PlayerAction extends ActionSupport {
         updatedPlayer.setBirthYear(birthYear);
         updatedPlayer.setShirtNumber(shirtNumber);
         updatedPlayer.setCountry(countryService.findById(countryId));
+
 
         playerService.update(updatedPlayer);
         return SUCCESS;
@@ -129,5 +137,53 @@ public class PlayerAction extends ActionSupport {
 
     public void setCountryId(Integer countryId) {
         this.countryId = countryId;
+    }
+
+    public PlayerService getPlayerService() {
+        return playerService;
+    }
+
+    public CountryService getCountryService() {
+        return countryService;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Integer getAppearances() {
+        return appearances;
+    }
+
+    public void setAppearances(Integer appearances) {
+        this.appearances = appearances;
+    }
+
+    public Integer getGoals() {
+        return goals;
+    }
+
+    public void setGoals(Integer goals) {
+        this.goals = goals;
+    }
+
+    public Integer getAssists() {
+        return assists;
+    }
+
+    public void setAssists(Integer assists) {
+        this.assists = assists;
+    }
+
+    public Integer getCleanSheets() {
+        return cleanSheets;
+    }
+
+    public void setCleanSheets(Integer cleanSheets) {
+        this.cleanSheets = cleanSheets;
     }
 }

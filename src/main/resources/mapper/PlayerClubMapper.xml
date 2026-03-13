@@ -5,11 +5,51 @@
 
 <mapper namespace="com.example.mapper.PlayerClubMapper">
 
+    <!-- ========================= -->
+    <!-- SQL COLUMNS -->
+    <!-- ========================= -->
+
+    <sql id="CountryColumns">
+        co.id AS country_id,
+        co.country_name,
+        co.img_url
+    </sql>
+
+    <sql id="PlayerColumns">
+        p.id AS player_id,
+        p.full_name,
+        p.position,
+        p.birth_year,
+        p.country_id
+    </sql>
+
+    <sql id="ClubColumns">
+        c.id AS club_id,
+        c.club_name
+    </sql>
+
+    <sql id="PlayerClubColumns">
+        pc.id,
+        pc.player_id,
+        pc.club_id,
+        pc.year_joined,
+        pc.year_left,
+        pc.appearances,
+        pc.goals,
+        pc.assists,
+        pc.clean_sheets
+    </sql>
+
+    <!-- ========================= -->
+    <!-- RESULT MAP -->
+    <!-- ========================= -->
+
     <resultMap id="CountryResultMap" type="Country">
         <id property="id" column="country_id"/>
         <result property="countryName" column="country_name"/>
         <result property="imgUrl" column="img_url"/>
     </resultMap>
+
     <resultMap id="PlayerResultMap" type="Player">
         <id property="id" column="player_id"/>
         <result property="fullName" column="full_name"/>
@@ -18,82 +58,140 @@
         <association property="country" resultMap="CountryResultMap"/>
     </resultMap>
 
+    <resultMap id="ClubResultMap" type="Club">
+        <id property="id" column="club_id"/>
+        <result property="clubName" column="club_name"/>
+    </resultMap>
+
     <resultMap id="PlayerClubResultMap" type="PlayerClub">
         <id property="id" column="id"/>
         <result property="yearJoined" column="year_joined"/>
         <result property="yearLeft" column="year_left"/>
+        <result property="appearances" column="appearances"/>
+        <result property="goals" column="goals"/>
+        <result property="assists" column="assists"/>
+        <result property="cleanSheets" column="clean_sheets"/>
 
         <association property="player" resultMap="PlayerResultMap"/>
+        <association property="club" resultMap="ClubResultMap"/>
     </resultMap>
+
+    <!-- ========================= -->
+    <!-- INSERT -->
+    <!-- ========================= -->
 
     <insert id="insert" parameterType="PlayerClub">
         INSERT INTO player_clubs (
             player_id,
             club_id,
             year_joined,
-            year_left
+            year_left,
+            appearances,
+            goals,
+            assists,
+            clean_sheets
         )
         VALUES (
             #{player.id},
             #{club.id},
             #{yearJoined},
-            #{yearLeft}
+            #{yearLeft},
+            #{appearances},
+            #{goals},
+            #{assists},
+            #{cleanSheets}
         )
     </insert>
 
+    <!-- ========================= -->
+    <!-- SELECT -->
+    <!-- ========================= -->
+
     <select id="findByClubId" resultMap="PlayerClubResultMap" parameterType="int">
         SELECT
-            pc.id,
-            pc.player_id,
-            pc.club_id,
-            pc.year_joined,
-            pc.year_left,
-            p.full_name,
-            p.position,
-            p.birth_year,
-            c.club_name
+        <include refid="PlayerClubColumns"/>
+,
+        <include refid="PlayerColumns"/>
+,
+        <include refid="ClubColumns"/>
+,
+        <include refid="CountryColumns"/>
+        
         FROM player_clubs pc
         JOIN players p ON pc.player_id = p.id
         JOIN clubs c ON pc.club_id = c.id
+        LEFT JOIN countries co ON p.country_id = co.id
         WHERE pc.club_id = #{clubId}
         ORDER BY pc.year_joined DESC
     </select>
 
-    <select id="findById" resultMap="PlayerClubResultMap" parameterType="int">
+    <select id="findByPlayerIdAndClubId" resultMap="PlayerClubResultMap" parameterType="map">
         SELECT
-            pc.id,
-            pc.player_id,
-            pc.club_id,
-            pc.year_joined,
-            pc.year_left,
-            p.full_name,
-            p.position,
-            p.birth_year,
-            c.club_name
+        <include refid="PlayerClubColumns"/>
+,
+        <include refid="PlayerColumns"/>
+,
+        <include refid="ClubColumns"/>
+        
         FROM player_clubs pc
         JOIN players p ON pc.player_id = p.id
         JOIN clubs c ON pc.club_id = c.id
+        LEFT JOIN countries co ON p.country_id = co.id
+        WHERE pc.player_id = #{playerId} AND pc.club_id = #{clubId}
+    </select>
+
+
+    <select id="findById" resultMap="PlayerClubResultMap" parameterType="int">
+        SELECT
+        <include refid="PlayerClubColumns"/>
+,
+        <include refid="PlayerColumns"/>
+,
+        <include refid="ClubColumns"/>
+,
+        <include refid="CountryColumns"/>
+        
+        FROM player_clubs pc
+        JOIN players p ON pc.player_id = p.id
+        JOIN clubs c ON pc.club_id = c.id
+        LEFT JOIN countries co ON p.country_id = co.id
         WHERE pc.id = #{id}
     </select>
+
+    <!-- ========================= -->
+    <!-- UPDATE -->
+    <!-- ========================= -->
 
     <update id="update" parameterType="PlayerClub">
         UPDATE player_clubs
         SET
             year_joined = #{yearJoined},
-            year_left = #{yearLeft}
+            year_left = #{yearLeft},
+            appearances = #{appearances},
+            goals = #{goals},
+            assists = #{assists},
+            clean_sheets = #{cleanSheets}
         WHERE id = #{id}
     </update>
+
+    <!-- ========================= -->
+    <!-- DELETE -->
+    <!-- ========================= -->
 
     <delete id="delete" parameterType="int">
         DELETE FROM player_clubs
         WHERE id = #{id}
     </delete>
 
+    <!-- ========================= -->
+    <!-- EXISTS -->
+    <!-- ========================= -->
+
     <select id="exists" resultType="int">
         SELECT COUNT(*)
         FROM player_clubs
         WHERE club_id = #{clubId}
-          AND player_id = #{playerId}
+        AND player_id = #{playerId}
     </select>
 
 </mapper>

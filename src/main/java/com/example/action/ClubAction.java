@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.model.Club;
 import com.example.model.Player;
+import com.example.model.PlayerClub;
 import com.example.services.ClubService;
 import com.example.services.PlayerClubService;
 import com.example.services.PlayerService;
@@ -17,16 +18,23 @@ public class ClubAction extends ActionSupport {
 
     private List<Club> clubs;
     private Club club;
+    private PlayerClub playerClub;
+
     private Integer clubId;
     private String imgUrl;
 // 
     private List<Player> players;
     private String clubName;
 
-
+    private Integer playerClubId;
     private Integer playerId;
     private Integer yearJoined;
     private Integer yearLeft;
+    private Integer appearances;
+    private Integer goals;
+    private Integer assists;
+    private Integer cleanSheets;
+    
     // ========================
     // List clubs
     // ========================
@@ -50,10 +58,20 @@ public class ClubAction extends ActionSupport {
         return SUCCESS;
     }
 
-     public String addPlayerToClub() {  
-        playerClubService.insert(clubId, playerId, yearJoined, yearLeft);
+    public String addPlayerToClub() {  
+        playerClubService.insert(clubId, playerId, yearJoined, yearLeft, appearances, goals, assists, cleanSheets);
         return SUCCESS;
     }
+
+    public String editPlayerFromClub() {
+        playerClub = playerClubService.findByPlayerIdAndClubId(playerId, clubId);
+        return SUCCESS;
+    }
+    public String updatePlayerFromClub() {
+        playerClubService.update(playerClubId, yearJoined, yearLeft, appearances, goals, assists, cleanSheets);
+        return SUCCESS;
+    }
+
     // ========================
     // Create club
     // ========================
@@ -151,5 +169,73 @@ public class ClubAction extends ActionSupport {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public ClubService getClubService() {
+        return clubService;
+    }
+
+    public PlayerClubService getPlayerClubService() {
+        return playerClubService;
+    }
+
+    public PlayerService getPlayerService() {
+        return playerService;
+    }
+
+    public void setClubs(List<Club> clubs) {
+        this.clubs = clubs;
+    }
+
+    public void setClub(Club club) {
+        this.club = club;
+    }
+
+    public PlayerClub getPlayerClub() {
+        return playerClub;
+    }
+
+    public void setPlayerClub(PlayerClub playerClub) {
+        this.playerClub = playerClub;
+    }
+
+    public Integer getAppearances() {
+        return appearances;
+    }
+
+    public void setAppearances(Integer appearances) {
+        this.appearances = appearances;
+    }
+
+    public Integer getGoals() {
+        return goals;
+    }
+
+    public void setGoals(Integer goals) {
+        this.goals = goals;
+    }
+
+    public Integer getAssists() {
+        return assists;
+    }
+
+    public void setAssists(Integer assists) {
+        this.assists = assists;
+    }
+
+    public Integer getCleanSheets() {
+        return cleanSheets;
+    }
+
+    public void setCleanSheets(Integer cleanSheets) {
+        this.cleanSheets = cleanSheets;
+    }
+
+    public Integer getPlayerClubId() {
+        return playerClubId;
+    }
+
+    public void setPlayerClubId(Integer playerClubId) {
+        this.playerClubId = playerClubId;
     }
 }

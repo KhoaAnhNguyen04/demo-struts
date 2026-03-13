@@ -58,35 +58,36 @@ uri="/struts-tags" %>
             </p>
           </div>
         </div>
-
-        <s:if test="club.playerClubs != null && !club.playerClubs.isEmpty()">
-          <div class="space-y-4">
+        <div class="space-y-4">
+          <s:if test="club.playerClubs != null && !club.playerClubs.isEmpty()">
             <s:iterator value="club.playerClubs" var="playerClub">
               <jsp:include page="./club-player-item.jsp" />
             </s:iterator>
-          </div>
-        </s:if>
+          </s:if>
 
-        <s:else>
+          <s:else>
+            <div
+              class="border border-dashed border-gray-300 rounded-2xl p-10 text-center bg-gray-50"
+            >
+              <p class="text-lg font-medium text-gray-600">No players found</p>
+              <p class="text-sm text-gray-500 mt-2">
+                This club does not have any player records yet.
+              </p>
+            </div>
+          </s:else>
           <div
-            class="border border-dashed border-gray-300 rounded-2xl p-10 text-center bg-gray-50"
+            class="border-2 border-dashed border-gray-300 rounded-2xl p-5 hover:border-blue-400 hover:bg-blue-50 transition cursor-pointer"
           >
-            <p class="text-lg font-medium text-gray-600">No players found</p>
-            <p class="text-sm text-gray-500 mt-2">
-              This club does not have any player records yet.
-            </p>
+            <a
+              href="club-add-player-form?clubId=<s:property value='club.id'/>"
+              class="flex items-center justify-center gap-3 text-blue-600 font-semibold text-lg"
+            >
+              <span class="text-2xl">+</span>
+              Add Player To This Club
+            </a>
           </div>
-        </s:else>
-        <div
-          class="border-2 border-dashed border-gray-300 rounded-2xl p-5 hover:border-blue-400 hover:bg-blue-50 transition cursor-pointer"
-        >
-          <a
-            href="club-add-player-form?clubId=<s:property value='club.id'/>"
-            class="flex items-center justify-center gap-3 text-blue-600 font-semibold text-lg"
-          >
-            <span class="text-2xl">+</span>
-            Add Player To This Club
-          </a>
+                    </div>
+
         </div>
       </div>
     </div>

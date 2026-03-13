@@ -46,6 +46,45 @@ uri="/struts-tags" %>
         />
       </div>
 
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-2">
+          Appearances
+        </label>
+        <s:textfield
+          name="appearances"
+          cssClass="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-2">
+          Goals
+        </label>
+        <s:textfield
+          name="goals"
+          cssClass="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-2">
+          Assists
+        </label>
+        <s:textfield
+          name="assists"
+          cssClass="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-2">
+          Clean Sheets
+        </label>
+        <s:textfield
+          name="cleanSheets"
+          cssClass="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        />
+      </div>
+
       <div class="flex gap-3 pt-2">
         <s:submit
           value="Add Player"

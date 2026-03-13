@@ -14,6 +14,8 @@ public interface PlayerClubMapper {
 
     PlayerClub findById(Integer id);
 
+    PlayerClub findByPlayerIdAndClubId(@Param("playerId") Integer playerId, @Param("clubId") Integer clubId);
+    
     void update(PlayerClub playerClub);
 
     void delete(Integer id);

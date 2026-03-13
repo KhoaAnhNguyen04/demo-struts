@@ -6,6 +6,11 @@ public class PlayerClub {
     private Integer yearJoined;
     private Integer yearLeft;
 
+    private Integer appearances;
+    private Integer goals;
+    private Integer assists;
+    private Integer cleanSheets;
+    
     private Player player;
     private Club club;
     public Integer getId() {
@@ -38,10 +43,36 @@ public class PlayerClub {
     public void setClub(Club club) {
         this.club = club;
     }
+
+    public Integer getAppearances() {
+        return appearances;
+    }
+    public void setAppearances(Integer appearances) {
+        this.appearances = appearances;
+    }
+    public Integer getGoals() {
+        return goals;
+    }
+    public void setGoals(Integer goals) {
+        this.goals = goals;
+    }
+    public Integer getAssists() {
+        return assists;
+    }
+    public void setAssists(Integer assists) {
+        this.assists = assists;
+    }
+    public Integer getCleanSheets() {
+        return cleanSheets;
+    }
+    public void setCleanSheets(Integer cleanSheets) {
+        this.cleanSheets = cleanSheets;
+    }
     @Override
     public String toString() {
-        return "PlayerClub [id=" + id + ", yearJoined=" + yearJoined + ", yearLeft=" + yearLeft + ", player=" + player
-                + ", club=" + club + "]";
+        return "PlayerClub [id=" + id + ", yearJoined=" + yearJoined + ", yearLeft=" + yearLeft + ", appearances="
+                + appearances + ", goals=" + goals + ", assists=" + assists + ", cleanSheets=" + cleanSheets
+                + ", player=" + player + ", club=" + club + "]";
     }
     
 }

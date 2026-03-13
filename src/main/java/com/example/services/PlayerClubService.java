@@ -12,7 +12,7 @@ import com.example.utils.MyBatisUtil;
 
 public class PlayerClubService {
 
-    public void insert(Integer clubId, Integer playerId, Integer yearJoined, Integer yearLeft) {
+    public void insert(Integer clubId, Integer playerId, Integer yearJoined, Integer yearLeft, Integer appearances, Integer goals, Integer assists, Integer cleanSheets) {
         try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
             PlayerClubMapper mapper = session.getMapper(PlayerClubMapper.class);
 
@@ -28,6 +28,10 @@ public class PlayerClubService {
             playerClub.setPlayer(player);
             playerClub.setYearJoined(yearJoined);
             playerClub.setYearLeft(yearLeft);
+            playerClub.setAppearances(appearances);
+            playerClub.setGoals(goals);
+            playerClub.setAssists(assists);
+            playerClub.setCleanSheets(cleanSheets);
 
             mapper.insert(playerClub);
             session.commit();
@@ -48,7 +52,14 @@ public class PlayerClubService {
         }
     }
 
-    public void update(Integer id, Integer yearJoined, Integer yearLeft) {
+    public PlayerClub findByPlayerIdAndClubId(Integer playerId, Integer clubId) {
+        try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
+            PlayerClubMapper mapper = session.getMapper(PlayerClubMapper.class);
+            return mapper.findByPlayerIdAndClubId(playerId, clubId);
+        }
+    }
+
+    public void update(Integer id, Integer yearJoined, Integer yearLeft, Integer appearances, Integer goals, Integer assists, Integer cleanSheets) {
         try (SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
             PlayerClubMapper mapper = session.getMapper(PlayerClubMapper.class);
 
@@ -56,6 +67,10 @@ public class PlayerClubService {
             playerClub.setId(id);
             playerClub.setYearJoined(yearJoined);
             playerClub.setYearLeft(yearLeft);
+            playerClub.setAppearances(appearances);
+            playerClub.setGoals(goals);
+            playerClub.setAssists(assists);
+            playerClub.setCleanSheets(cleanSheets);
 
             mapper.update(playerClub);
             session.commit();

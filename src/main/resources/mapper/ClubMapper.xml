@@ -33,7 +33,10 @@
         <id property="id" column="player_club_id"/>
         <result property="yearJoined" column="year_joined"/>
         <result property="yearLeft" column="year_left"/>
-
+        <result property="appearances" column="appearances"/>
+        <result property="goals" column="goals"/>
+        <result property="assists" column="assists"/>
+        <result property="cleanSheets" column="clean_sheets"/>
         <association property="player" resultMap="PlayerResultMap"/>
     </resultMap>
 
@@ -66,9 +69,15 @@
             c.id as club_id,
             c.club_name,
             c.img_url,
+
             pc.id as player_club_id,
             pc.year_joined,
             pc.year_left,
+            pc.appearances,
+            pc.goals,
+            pc.assists,
+            pc.clean_sheets,
+            
             p.id as player_id,
             p.full_name,
             p.position,

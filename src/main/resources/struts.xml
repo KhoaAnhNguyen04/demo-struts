@@ -44,6 +44,14 @@
             <result name="success">/WEB-INF/pages/club-detail/club-detail.jsp</result>
         </action>
 
+        <action name="club-edit-player" class="com.example.action.ClubAction" method="editPlayerFromClub">
+            <result name="success">/WEB-INF/pages/player-club-edit/player-club-edit.jsp</result>
+        </action>
+
+        <action name="player-club-update" class="com.example.action.ClubAction" method="updatePlayerFromClub">
+            <result name="success" type="redirect">club-detail?clubId=${clubId}</result>
+        </action>
+
         <action name="club-update" class="com.example.action.ClubAction" method="update">
             <result name="success" type="redirect">club-management</result>
         </action>

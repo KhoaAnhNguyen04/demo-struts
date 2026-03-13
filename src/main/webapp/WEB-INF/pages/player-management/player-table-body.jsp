@@ -14,7 +14,11 @@ charset=UTF-8" pageEncoding="UTF-8" %>
     <td class="px-4 py-2 border"><s:property value="#p.birthYear" /></td>
     <td class="px-4 py-2 border"><s:property value="#p.shirtNumber" /></td>
     <td class="px-4 py-2 border">
-      <s:property value="#p.country.countryName" />
+      <img
+        src="<s:property value='#p.country.imgUrl' />"
+        alt="<s:property value='#p.country.countryName' />"
+        class="h-6 w-10 object-cover rounded-sm"
+      />
     </td>
     <td class="px-4 py-2 border text-center space-x-2">
       <a
